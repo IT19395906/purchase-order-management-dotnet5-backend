@@ -41,7 +41,7 @@ namespace order_purchase_management.Controllers
             return Ok(new { total, data = purchaseOrders });
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("byId/{id}")]
         public async Task<IActionResult> GetOrderById(int id)
         {
             var pOrder = await _context.PurchaseOrders.FindAsync(id);
@@ -53,7 +53,7 @@ namespace order_purchase_management.Controllers
             return Ok(pOrder);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateOrder(PurchaseOrderDto dto)
         {
             var pOrder = new PurchaseOrder
@@ -72,7 +72,7 @@ namespace order_purchase_management.Controllers
             return CreatedAtAction(nameof(GetOrderById), new { id = pOrder.Id }, pOrder);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateOrder(int id, PurchaseOrderDto dto)
         {
             var pOrder = await _context.PurchaseOrders.FindAsync(id);
@@ -92,7 +92,7 @@ namespace order_purchase_management.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
             var pOrder = await _context.PurchaseOrders.FindAsync(id);
