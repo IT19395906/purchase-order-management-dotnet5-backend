@@ -3,6 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace order_purchase_management.Models
 {
+    public enum POStatus
+    {
+        Draft,
+        Approved,
+        Shipped,
+        Completed,
+        Cancelled
+    }
 
     public class PurchaseOrder
     {
@@ -27,6 +35,6 @@ namespace order_purchase_management.Models
         public decimal TotalAmount { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public POStatus Status { get; set; }
     }
 }

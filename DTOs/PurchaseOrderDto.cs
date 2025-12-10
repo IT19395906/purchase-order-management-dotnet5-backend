@@ -1,4 +1,5 @@
 using System;
+using order_purchase_management.Models;
 
 namespace order_purchase_management.DTOs
 {
@@ -9,6 +10,6 @@ namespace order_purchase_management.DTOs
         public string SupplierName { get; set; }
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; }
+        public POStatus Status { get; set; }
     }
 }

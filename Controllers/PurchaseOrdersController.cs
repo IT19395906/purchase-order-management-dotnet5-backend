@@ -20,7 +20,7 @@ namespace order_purchase_management.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrders(string supplier, string status, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> GetAllOrders(string supplier, POStatus? status, int page = 1, int pageSize = 10)
         {
             var query = _context.PurchaseOrders.AsQueryable();
 
@@ -29,9 +29,9 @@ namespace order_purchase_management.Controllers
                 query = query.Where(p => p.SupplierName.Contains(supplier));
             }
 
-            if (!string.IsNullOrEmpty(status))
+            if (status.HasValue)
             {
-                query = query.Where(p => p.Status == status);
+                query = query.Where(p => p.Status == status.Value);
             }
 
             var total = await query.CountAsync();
